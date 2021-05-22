@@ -26,14 +26,14 @@ app.get('*', (req, res) => {
 });
 
 app.post('/api/notes', (req, res) => {
-    const savedNote = JSON.parse(fs.readFileSync('./db/db.json'));
+    const saveNote = JSON.parse(fs.readFileSync('./db/db.json'));
     const note = req.body;
     const noteId = (saveNote.length).toString();
     note.id = noteId;
-    savedNote.push(note);
+    saveNote.push(note);
     
     fs.writeFileSync('./db/db.json', JSON.stringify(saveNote));
-    res.json(savedNote);
+    res.json(saveNote);
 })
 
 app.listen(PORT, () => {

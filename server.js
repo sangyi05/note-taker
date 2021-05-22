@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -20,3 +20,12 @@ app.get('/api/notes/:id', (req, res) => {
     let saveNote = JSON.parse(fs.readFileSync('./db/db.json'));
     res.json(saveNote[Number(req.params.id)])
 });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.listen(PORT, () => {
+    console.log(`App listening on PORT ${PORT}`);
+});
+   

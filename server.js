@@ -17,6 +17,6 @@ app.get('/api/notes', (req, res) => {
 });
 
 app.get('/api/notes/:id', (req, res) => {
-    let saveNote = JSON.parse(fs.readFileSync('./db/db.json');
+    let saveNote = JSON.parse(fs.readFileSync('./db/db.json'));
     res.json(saveNote[Number(req.params.id)])
 });
